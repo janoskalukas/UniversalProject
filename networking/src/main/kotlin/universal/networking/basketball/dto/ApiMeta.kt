@@ -2,6 +2,9 @@ package universal.networking.basketball.dto
 
 import com.squareup.moshi.Json
 
+/**
+ * Contains Meta info for basketball api.
+ */
 data class ApiMeta(
 
     @field:Json(name = "current_page")
@@ -11,5 +14,5 @@ data class ApiMeta(
     val nextPage: Int,
 
     @field:Json(name = "per_page")
-    val perPage: Int
+    val perPage: Int,
 )

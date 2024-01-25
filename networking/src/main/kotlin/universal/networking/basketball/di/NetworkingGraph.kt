@@ -1,15 +1,18 @@
 package universal.networking.basketball.di
 
 import com.squareup.moshi.Moshi
-import universal.networking.basketball.BasketballApi
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.concurrent.TimeUnit
+import universal.networking.basketball.BasketballApi
 
-public object NetworkingModule {
+/**
+ * Networking DI graph.
+ */
+public object NetworkingGraph {
 
     public val module = module {
 
@@ -26,10 +29,9 @@ public object NetworkingModule {
 
             OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                // Add any other OkHttpClient configurations here
+                .readTimeout(timeout = 30, TimeUnit.SECONDS)
+                .writeTimeout(timeout = 30, TimeUnit.SECONDS)
+                .connectTimeout(timeout = 30, TimeUnit.SECONDS)
                 .build()
         }
 

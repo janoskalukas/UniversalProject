@@ -2,7 +2,10 @@ package universal.networking.basketball.dto
 
 import com.squareup.moshi.Json
 
-data class ApiPlayer(
+/**
+ * Contains player info for basketball api.
+ */
+public data class ApiPlayer(
 
     val id: Int,
     val position: String,

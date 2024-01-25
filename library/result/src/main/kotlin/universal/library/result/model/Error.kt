@@ -1,6 +1,5 @@
 package universal.library.result.model
 
-
 /**
  * Domain model representation of generic business operation error.
  */

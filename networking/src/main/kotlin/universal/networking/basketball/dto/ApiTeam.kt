@@ -2,7 +2,10 @@ package universal.networking.basketball.dto
 
 import com.squareup.moshi.Json
 
-data class ApiTeam(
+/**
+ * Contains Team info for basketball api.
+ */
+public data class ApiTeam(
     val id: Int,
     val name: String,
     @field:Json(name = "full_name")

@@ -1,0 +1,4 @@
+# TODO: Temporary workaround for https://youtrack.jetbrains.com/issue/KTIJ-3028. This file should be removed once issue is fixed.
+[*.kt]
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true

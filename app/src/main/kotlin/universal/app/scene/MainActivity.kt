@@ -10,8 +10,7 @@ import universal.feature.basketball.routing.BasketballNavGraph
 import universal.library.navigation.system.NavControllerActivity
 import universal.library.navigation.system.NavigationActivityDelegate
 
-
-class MainActivity : NavControllerActivity() {
+internal class MainActivity : NavControllerActivity() {
 
     private val navigationDelegate: NavigationActivityDelegate by inject()
 

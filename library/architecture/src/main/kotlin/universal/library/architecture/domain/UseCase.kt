@@ -1,6 +1,5 @@
 package universal.library.architecture.domain
 
-
 /**
  * Standalone domain action that orchestrates the actual work.
  * Has no internal state and blocks on execution.

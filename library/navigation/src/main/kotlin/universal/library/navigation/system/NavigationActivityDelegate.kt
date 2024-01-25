@@ -2,10 +2,10 @@ package universal.library.navigation.system
 
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import universal.library.navigation.device.Destination
-import universal.library.navigation.system.NavigationDispatcher.Request
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import universal.library.navigation.device.Destination
+import universal.library.navigation.system.NavigationDispatcher.Request
 
 /**
  * Activity navigation logic of every main application Activity.
@@ -31,7 +31,7 @@ public class NavigationActivityDelegate internal constructor(
                     is Request.GoBack -> if (!navigationController.popBackStack()) activity.finishAndRemoveTask()
                     is Request.GoBackTo -> navigationController.popBackStack(
                         request.destination,
-                        request.popDestination
+                        request.popDestination,
                     )
 
                     is Request.GoTo -> navigationController.navigate(request.destination)
@@ -52,10 +52,9 @@ public class NavigationActivityDelegate internal constructor(
         navigationRequestsJob = null
     }
 
-    private fun destinationChangedListener() =
-        NavController.OnDestinationChangedListener { controller, current, _ ->
-            navigationDispatcher.onNavigationExecuted(
-                current = current.id.let(Destination::Id),
-            )
-        }
+    private fun destinationChangedListener() = NavController.OnDestinationChangedListener { _, current, _ ->
+        navigationDispatcher.onNavigationExecuted(
+            current = current.id.let(Destination::Id),
+        )
+    }
 }

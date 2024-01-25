@@ -1,7 +1,7 @@
 package universal.library.result.data
 
-import universal.library.result.model.PageResult
 import kotlin.coroutines.cancellation.CancellationException
+import universal.library.result.model.PageResult
 
 /**
  * Wraps given suspending operation output as [PageResult].
@@ -9,7 +9,7 @@ import kotlin.coroutines.cancellation.CancellationException
 public suspend fun <T> PageResult.Companion.of(operation: suspend () -> T): PageResult<T> {
     return suspendRunCatching {
         PageResult.Success(operation())
-    }.getOrElse { exception ->
+    }.getOrElse { _ ->
         PageResult.Failure
     }
 }

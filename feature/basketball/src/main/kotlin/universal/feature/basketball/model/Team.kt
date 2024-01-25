@@ -1,6 +1,6 @@
 package universal.feature.basketball.model
 
-data class Team(
+internal data class Team(
     val id: Int,
     val name: String,
     val fullName: String,

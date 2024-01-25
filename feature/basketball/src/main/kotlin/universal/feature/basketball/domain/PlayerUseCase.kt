@@ -1,9 +1,9 @@
 package universal.feature.basketball.domain
 
+import universal.feature.basketball.model.Player
 import universal.library.architecture.domain.SuspendUnitUseCase
 import universal.library.architecture.domain.UseCase
 import universal.library.result.model.PageResult
-import universal.feature.basketball.model.Player
 
 internal interface PlayerUseCase {
 

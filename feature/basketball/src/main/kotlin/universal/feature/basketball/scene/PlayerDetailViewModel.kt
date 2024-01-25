@@ -1,13 +1,13 @@
 package universal.feature.basketball.scene
 
 import androidx.lifecycle.viewModelScope
-import universal.library.mvvm.presentation.StatefulViewModel
-import universal.library.mvvm.presentation.ViewModelState
-import universal.library.result.model.PageResult
+import kotlinx.coroutines.launch
 import universal.feature.basketball.domain.BasketballNavigation
 import universal.feature.basketball.domain.PlayerUseCase
 import universal.feature.basketball.scene.PlayerDetailViewModel.State
-import kotlinx.coroutines.launch
+import universal.library.mvvm.presentation.StatefulViewModel
+import universal.library.mvvm.presentation.ViewModelState
+import universal.library.result.model.PageResult
 
 internal class PlayerDetailViewModel(
     private val fetchPlayer: PlayerUseCase.Fetch,
@@ -28,6 +28,6 @@ internal class PlayerDetailViewModel(
     }
 
     data class State(
-        val name: String = "empty"
+        val name: String = "",
     ) : ViewModelState
 }

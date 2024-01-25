@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import universal.feature.basketball.model.Player
 import universal.networking.basketball.BasketballApi
 
-class MoviePagingSource(
+internal class PlayersPagingSource(
     private val api: BasketballApi,
 ) : PagingSource<Int, Player>() {
 
@@ -19,7 +19,7 @@ class MoviePagingSource(
             LoadResult.Page(
                 data = result.players.map(PlayerConverter::toDomain),
                 prevKey = if (currentPage == 1) null else currentPage - 1,
-                nextKey = if (result.players.isEmpty()) null else result.meta.currentPage + 1
+                nextKey = if (result.players.isEmpty()) null else result.meta.currentPage + 1,
             )
         } catch (exception: Exception) {
             return LoadResult.Error(exception)
@@ -29,5 +29,4 @@ class MoviePagingSource(
     override fun getRefreshKey(state: PagingState<Int, Player>): Int? {
         return state.anchorPosition
     }
-
 }

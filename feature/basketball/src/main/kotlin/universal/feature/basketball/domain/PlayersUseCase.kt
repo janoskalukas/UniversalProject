@@ -1,9 +1,9 @@
 package universal.feature.basketball.domain
 
 import androidx.paging.PagingData
-import universal.library.architecture.domain.SuspendUnitUseCase
-import universal.feature.basketball.model.Player
 import kotlinx.coroutines.flow.Flow
+import universal.feature.basketball.model.Player
+import universal.library.architecture.domain.SuspendUnitUseCase
 
 internal interface PlayersUseCase {
 
@@ -11,6 +11,6 @@ internal interface PlayersUseCase {
         private val playersRepository: PlayersRepository,
     ) : SuspendUnitUseCase<Flow<PagingData<Player>>> {
 
-        override suspend fun invoke(): Flow<PagingData<Player>> = playersRepository.getMovies()
+        override suspend fun invoke(): Flow<PagingData<Player>> = playersRepository.fetchPlayers()
     }
 }

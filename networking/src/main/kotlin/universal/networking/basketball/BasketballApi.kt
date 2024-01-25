@@ -1,11 +1,14 @@
 package universal.networking.basketball
 
-import universal.networking.basketball.dto.ApiPlayer
-import universal.networking.basketball.dto.ApiPlayers
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import universal.networking.basketball.dto.ApiPlayer
+import universal.networking.basketball.dto.ApiPlayers
 
+/**
+ * Basketball api.
+ */
 interface BasketballApi {
 
     companion object {

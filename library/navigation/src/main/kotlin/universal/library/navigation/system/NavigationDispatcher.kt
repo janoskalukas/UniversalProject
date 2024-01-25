@@ -1,17 +1,17 @@
 package universal.library.navigation.system
 
 import android.content.Intent
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import universal.library.navigation.device.Destination
 import universal.library.navigation.system.NavigationDispatcher.Request.Call
 import universal.library.navigation.system.NavigationDispatcher.Request.CloseApp
 import universal.library.navigation.system.NavigationDispatcher.Request.GoBack
 import universal.library.navigation.system.NavigationDispatcher.Request.GoBackTo
 import universal.library.navigation.system.NavigationDispatcher.Request.GoTo
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 
 /**
  * Launches one-shot navigation actions without waiting for result.

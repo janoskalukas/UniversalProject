@@ -1,7 +1,7 @@
 package universal.feature.basketball.routing
 
-import universal.library.navigation.system.NavigationDispatcher
 import universal.feature.basketball.domain.BasketballNavigation
+import universal.library.navigation.system.NavigationDispatcher
 
 internal class BasketballNavigationImpl(
     private val dispatcher: NavigationDispatcher,

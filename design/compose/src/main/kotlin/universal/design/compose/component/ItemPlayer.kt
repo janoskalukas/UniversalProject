@@ -23,10 +23,10 @@ import com.bumptech.glide.integration.compose.GlideImage
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 public fun ItemPlayer(
-    title: String,
+    name: String,
     description: String? = null,
     imageUrl: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Card(
         modifier = Modifier
@@ -34,23 +34,19 @@ public fun ItemPlayer(
             .clip(RoundedCornerShape(8.dp))
             .clickable { onClick() },
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 8.dp
-        )
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
     ) {
         Row {
             GlideImage(
                 model = imageUrl,
                 contentDescription = null,
-                modifier = Modifier.size(120.dp)
+                modifier = Modifier.size(120.dp),
             )
 
             Column {
                 Text(
-                    text = title,
+                    text = name,
                     color = MaterialTheme.colorScheme.onBackground,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
@@ -58,10 +54,10 @@ public fun ItemPlayer(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)
-                        .padding(top = 8.dp)
+                        .padding(top = 8.dp),
                 )
 
-                Spacer(modifier = Modifier.padding(vertical = 4.dp))
+                Spacer(modifier = Modifier.size(4.dp))
 
                 description?.let {
                     Text(
@@ -71,7 +67,7 @@ public fun ItemPlayer(
                             .padding(bottom = 8.dp),
                         color = MaterialTheme.colorScheme.onSurface,
                         maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
                     )
                 }
             }

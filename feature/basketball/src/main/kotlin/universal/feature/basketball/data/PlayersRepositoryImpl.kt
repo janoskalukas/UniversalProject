@@ -3,26 +3,21 @@ package universal.feature.basketball.data
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import universal.library.result.model.PageResult
+import kotlinx.coroutines.flow.Flow
 import universal.feature.basketball.domain.PlayersRepository
 import universal.feature.basketball.model.Player
-import universal.feature.basketball.model.Players
-import kotlinx.coroutines.flow.Flow
+import universal.library.result.model.PageResult
 
 internal class PlayersRepositoryImpl(
     private val remoteResource: PlayersRemoteResource,
-    private val pagingSource: MoviePagingSource,
+    private val pagingSource: PlayersPagingSource,
     private val localResource: PlayersLocalResource,
 ) : PlayersRepository {
 
-    override suspend fun fetchPlayers(pageNumber: Int): PageResult<Players> {
-        return remoteResource.fetchPlayers(pageNumber = pageNumber)
-    }
-
-    override suspend fun getMovies(): Flow<PagingData<Player>> {
+    override suspend fun fetchPlayers(): Flow<PagingData<Player>> {
         return Pager(
             config = PagingConfig(pageSize = 25, prefetchDistance = 2),
-            pagingSourceFactory = { pagingSource }
+            pagingSourceFactory = { pagingSource },
         ).flow
     }
 

@@ -1,6 +1,6 @@
 package universal.feature.basketball.data
 
-class PlayersLocalResource {
+internal class PlayersLocalResource {
 
     private var currentPlayerId: Int? = null
 

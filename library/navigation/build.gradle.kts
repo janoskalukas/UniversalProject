@@ -5,26 +5,10 @@ plugins {
 
 android {
     namespace = "com.universal.library.navigation"
-    compileSdk = 33
-
-    defaultConfig {
-        minSdk = 28
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
 }
+
+apply<ConfigCompiler>()
+apply<ConfigAndroidBuild>()
 
 dependencies {
     implementation(libs.activity.compose)

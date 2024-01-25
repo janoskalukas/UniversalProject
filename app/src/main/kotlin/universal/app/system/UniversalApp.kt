@@ -1,14 +1,14 @@
 package universal.app.system
 
 import android.app.Application
-import universal.library.navigation.di.NavigationLibraryModule
-import universal.feature.basketball.di.BasketballFeatureModule
-import universal.networking.basketball.di.NetworkingModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
+import universal.feature.basketball.di.BasketballFeatureGraph
+import universal.library.navigation.di.NavigationLibraryGraph
+import universal.networking.basketball.di.NetworkingGraph
 
-class UniversalApp : Application() {
+internal class UniversalApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -17,10 +17,10 @@ class UniversalApp : Application() {
             androidContext(this@UniversalApp)
             modules(
                 listOf(
-                    BasketballFeatureModule.module,
-                    NavigationLibraryModule.module,
-                    NetworkingModule.module,
-                )
+                    BasketballFeatureGraph.module,
+                    NavigationLibraryGraph.module,
+                    NetworkingGraph.module,
+                ),
             )
         }
     }
