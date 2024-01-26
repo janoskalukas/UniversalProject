@@ -10,7 +10,7 @@ import universal.library.result.model.PageResult
 
 internal class PlayersRepositoryImpl(
     private val remoteResource: PlayersRemoteResource,
-    private val pagingSource: PlayersPagingSource,
+    private val pagingSource: BasketballPagingSource,
     private val localResource: PlayersLocalResource,
 ) : PlayersRepository {
 

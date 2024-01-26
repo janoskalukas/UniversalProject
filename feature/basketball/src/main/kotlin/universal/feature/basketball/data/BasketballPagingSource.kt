@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import universal.feature.basketball.model.Player
 import universal.networking.basketball.BasketballApi
 
-internal class PlayersPagingSource(
+internal class BasketballPagingSource(
     private val api: BasketballApi,
 ) : PagingSource<Int, Player>() {
 

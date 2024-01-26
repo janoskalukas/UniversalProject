@@ -5,8 +5,8 @@ import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.new
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
+import universal.feature.basketball.data.BasketballPagingSource
 import universal.feature.basketball.data.PlayersLocalResource
-import universal.feature.basketball.data.PlayersPagingSource
 import universal.feature.basketball.data.PlayersRemoteResource
 import universal.feature.basketball.data.PlayersRepositoryImpl
 import universal.feature.basketball.domain.BasketballNavigation
@@ -27,7 +27,7 @@ public object BasketballFeatureGraph {
         single<PlayersRepository> { new(::PlayersRepositoryImpl) }
         singleOf(::PlayersRemoteResource)
         singleOf(::PlayersLocalResource)
-        singleOf(::PlayersPagingSource)
+        factoryOf(::BasketballPagingSource)
 
         viewModelOf(::PlayersListViewModel)
         viewModelOf(::PlayerDetailViewModel)
