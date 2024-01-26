@@ -13,6 +13,7 @@ import universal.feature.basketball.domain.BasketballNavigation
 import universal.feature.basketball.domain.PlayerUseCase
 import universal.feature.basketball.domain.PlayersRepository
 import universal.feature.basketball.domain.PlayersUseCase
+import universal.feature.basketball.presentation.PlayerFormat
 import universal.feature.basketball.routing.BasketballNavigationImpl
 import universal.feature.basketball.scene.PlayerDetailViewModel
 import universal.feature.basketball.scene.PlayersListViewModel
@@ -29,12 +30,14 @@ public object BasketballFeatureGraph {
         singleOf(::PlayersLocalResource)
         factoryOf(::BasketballPagingSource)
 
-        viewModelOf(::PlayersListViewModel)
-        viewModelOf(::PlayerDetailViewModel)
-
         factoryOf(PlayersUseCase::Fetch)
         factoryOf(PlayerUseCase::Display)
         factoryOf(PlayerUseCase::Fetch)
+
+        factoryOf(::PlayerFormat)
+
+        viewModelOf(::PlayersListViewModel)
+        viewModelOf(::PlayerDetailViewModel)
 
         factory<BasketballNavigation> { new(::BasketballNavigationImpl) }
     }

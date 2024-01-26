@@ -24,7 +24,8 @@ import com.bumptech.glide.integration.compose.GlideImage
 @Composable
 public fun ItemPlayer(
     name: String,
-    description: String? = null,
+    team: String,
+    position: String? = null,
     imageUrl: String,
     onClick: () -> Unit,
 ) {
@@ -45,6 +46,7 @@ public fun ItemPlayer(
             )
 
             Column {
+                Spacer(modifier = Modifier.size(8.dp))
                 Text(
                     text = name,
                     color = MaterialTheme.colorScheme.onBackground,
@@ -53,18 +55,25 @@ public fun ItemPlayer(
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .padding(top = 8.dp),
+                        .padding(horizontal = 16.dp),
                 )
 
                 Spacer(modifier = Modifier.size(4.dp))
+                Text(
+                    text = team,
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp),
+                    color = MaterialTheme.colorScheme.onSurface,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                )
 
-                description?.let {
+                Spacer(modifier = Modifier.size(4.dp))
+                position?.let {
                     Text(
                         text = it,
                         modifier = Modifier
-                            .padding(horizontal = 16.dp)
-                            .padding(bottom = 8.dp),
+                            .padding(horizontal = 16.dp),
                         color = MaterialTheme.colorScheme.onSurface,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,

@@ -12,12 +12,14 @@ import kotlinx.coroutines.launch
 import universal.feature.basketball.domain.BasketballNavigation
 import universal.feature.basketball.domain.PlayerUseCase
 import universal.feature.basketball.domain.PlayersUseCase
-import universal.feature.basketball.model.Player
+import universal.feature.basketball.presentation.PlayerFormat
+import universal.feature.basketball.presentation.PlayerState
 
 internal class PlayersListViewModel(
     private val fetchPlayers: PlayersUseCase.Fetch,
     private val displayPlayer: PlayerUseCase.Display,
     private val navigation: BasketballNavigation,
+    private val playerFormat: PlayerFormat,
 ) : ViewModel() {
 
     private val _playersState: MutableStateFlow<PagingData<PlayerState>> = MutableStateFlow(value = PagingData.empty())
@@ -31,32 +33,16 @@ internal class PlayersListViewModel(
         navigation.goBack()
     }
 
+    fun onPlayer(player: PlayerState) {
+        displayPlayer(player.id)
+    }
+
     private fun fetch() = viewModelScope.launch {
         fetchPlayers()
             .distinctUntilChanged()
             .cachedIn(viewModelScope)
             .collect {
-                _playersState.value = it.map(::toState)
+                _playersState.value = it.map(playerFormat::format)
             }
     }
-
-    private fun toState(player: Player): PlayerState = with(player) {
-        PlayerState(
-            id = id,
-            fullName = "$firstName $lastName",
-            description = "${team.city} ${team.name}",
-            imageUrl = imageUrl,
-        )
-    }
-
-    fun onPlayer(player: PlayerState) {
-        displayPlayer(player.id)
-    }
-
-    data class PlayerState(
-        val id: Int,
-        val fullName: String,
-        val description: String,
-        val imageUrl: String,
-    )
 }

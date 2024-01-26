@@ -10,7 +10,7 @@ internal object PlayerConverter {
     fun toDomain(external: ApiPlayer): Player = with(external) {
         Player(
             id = id,
-            position = position,
+            position = position.let(PositionConverter::toDomain),
             firstName = firstName,
             lastName = lastName,
             heightFeet = heightFeet,

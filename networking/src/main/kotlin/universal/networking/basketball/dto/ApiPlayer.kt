@@ -8,6 +8,8 @@ import com.squareup.moshi.Json
 public data class ApiPlayer(
 
     val id: Int,
+
+    @field:Json(name = "position")
     val position: String,
 
     @field:Json(name = "first_name")

@@ -25,7 +25,7 @@ import universal.design.compose.component.AuxButton
 import universal.design.compose.component.FullScreenSpinner
 import universal.design.compose.component.ItemPlayer
 import universal.design.compose.component.Spinner
-import universal.feature.basketball.scene.PlayersListViewModel.PlayerState
+import universal.feature.basketball.presentation.PlayerState
 
 @Composable
 internal fun PlayersListScreen(viewModel: PlayersListViewModel = koinViewModel()) {
@@ -69,7 +69,8 @@ private fun Content(
                 pagingItems[index]?.let { pagingItem ->
                     ItemPlayer(
                         name = pagingItem.fullName,
-                        description = pagingItem.description,
+                        team = pagingItem.team,
+                        position = pagingItem.position,
                         imageUrl = pagingItem.imageUrl,
                     ) {
                         onPlayer(pagingItem)
@@ -126,5 +127,4 @@ fun FullScreenError(refresh: () -> Unit) {
             Spacer(modifier = Modifier.size(16.dp))
         }
     }
-
 }

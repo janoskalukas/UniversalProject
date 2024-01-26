@@ -2,7 +2,7 @@ package universal.feature.basketball.model
 
 internal data class Player(
     val id: Int,
-    val position: String,
+    val position: Position,
     val firstName: String,
     val lastName: String,
     val heightFeet: Int?,
