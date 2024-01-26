@@ -14,7 +14,7 @@ internal class BasketballPagingSource(
             val currentPage = params.key ?: 1
             val result = api.getPlayers(
                 pageNumber = currentPage,
-                perPage = 25,
+                perPage = 35,
             )
             LoadResult.Page(
                 data = result.players.map(PlayerConverter::toDomain),

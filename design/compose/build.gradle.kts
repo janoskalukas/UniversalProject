@@ -12,6 +12,8 @@ apply<ConfigAndroidBuild>()
 
 dependencies {
     implementation(libs.material3.compose)
+    implementation(libs.material)
+    implementation(libs.ui)
     implementation(libs.glide)
     implementation(libs.compose.lottie)
 }

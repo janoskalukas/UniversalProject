@@ -16,7 +16,7 @@ internal class PlayersRepositoryImpl(
 
     override suspend fun fetchPlayers(): Flow<PagingData<Player>> {
         return Pager(
-            config = PagingConfig(pageSize = 25, prefetchDistance = 2),
+            config = PagingConfig(pageSize = 35, prefetchDistance = 2),
             pagingSourceFactory = { pagingSource },
         ).flow
     }
