@@ -1,11 +1,11 @@
 package universal.feature.basketball.scene
 
-import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +23,7 @@ import org.koin.androidx.compose.koinViewModel
 import universal.design.compose.component.FullScreenError
 import universal.design.compose.component.FullScreenSpinner
 import universal.design.compose.theme.PreviewTheme
+import universal.feature.basketball.presentation.PlayerDetailState
 import universal.feature.basketball.presentation.PlayerState
 import universal.feature.basketball.scene.PlayerDetailViewModel.Content
 import universal.library.mvvm.presentation.Lce
@@ -54,48 +55,65 @@ private fun Screen(
 @Composable
 private fun Content(content: Content) {
     Column {
-        GlideImage(
-            model = content.player.imageUrl,
-            contentDescription = null,
-            contentScale = ContentScale.FillWidth,
-        )
-        Column {
-            Spacer(modifier = Modifier.size(8.dp))
-            Text(
-                text = content.player.fullName,
-                color = MaterialTheme.colorScheme.onBackground,
-                style = MaterialTheme.typography.titleLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+        content.player.apply {
+            GlideImage(
+                model = imageUrl,
+                contentDescription = null,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier.height(250.dp),
             )
-
-            Spacer(modifier = Modifier.size(4.dp))
-            Text(
-                text = content.player.team,
-                modifier = Modifier
-                    .padding(horizontal = 16.dp),
-                color = MaterialTheme.colorScheme.onSurface,
-                style = MaterialTheme.typography.titleMedium,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-            )
-
-            Spacer(modifier = Modifier.size(4.dp))
-            content.player.position?.let {
+            Column {
+                Spacer(modifier = Modifier.size(24.dp))
                 Text(
-                    text = it,
+                    text = fullName,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    style = MaterialTheme.typography.titleLarge,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                )
+
+                Spacer(modifier = Modifier.size(4.dp))
+                Text(
+                    text = team,
                     modifier = Modifier
                         .padding(horizontal = 16.dp),
                     color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.titleMedium,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                 )
+
+                position?.let {
+                    Spacer(modifier = Modifier.size(4.dp))
+                    Text(
+                        text = it,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp),
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.bodyLarge,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+
+                height?.let {
+                    Spacer(modifier = Modifier.size(4.dp))
+                    Text(
+                        text = it,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp),
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.bodyLarge,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+
+                Spacer(modifier = Modifier.size(16.dp))
             }
-            Spacer(modifier = Modifier.size(16.dp))
         }
     }
 }
@@ -106,12 +124,13 @@ private fun ScreenPreviewDark() = PreviewTheme {
     Screen(
         state = Lce.Content(
             Content(
-                PlayerState(
+                PlayerDetailState(
                     id = 0,
                     fullName = "Howard Wright",
                     team = "Atlanta Hawks",
                     position = "Center",
                     imageUrl = "",
+                    height = "10′ 6″"
                 ),
             ),
         ),
@@ -126,12 +145,13 @@ private fun ScreenPreviewLight() = PreviewTheme {
     Screen(
         state = Lce.Content(
             Content(
-                PlayerState(
+                PlayerDetailState(
                     id = 0,
                     fullName = "Howard Wright",
                     team = "Atlanta Hawks",
                     position = "Center",
                     imageUrl = "",
+                    height = "10′ 6″"
                 ),
             ),
         ),

@@ -13,6 +13,7 @@ import universal.feature.basketball.domain.BasketballNavigation
 import universal.feature.basketball.domain.PlayerUseCase
 import universal.feature.basketball.domain.PlayersRepository
 import universal.feature.basketball.domain.PlayersUseCase
+import universal.feature.basketball.presentation.PlayerDetailFormat
 import universal.feature.basketball.presentation.PlayerFormat
 import universal.feature.basketball.routing.BasketballNavigationImpl
 import universal.feature.basketball.scene.PlayerDetailViewModel
@@ -35,6 +36,7 @@ public object BasketballFeatureGraph {
         factoryOf(PlayerUseCase::Fetch)
 
         factoryOf(::PlayerFormat)
+        factoryOf(::PlayerDetailFormat)
 
         viewModelOf(::PlayersListViewModel)
         viewModelOf(::PlayerDetailViewModel)

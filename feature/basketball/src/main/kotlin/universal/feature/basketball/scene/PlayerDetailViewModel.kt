@@ -5,6 +5,8 @@ import kotlinx.coroutines.launch
 import universal.feature.basketball.domain.BasketballNavigation
 import universal.feature.basketball.domain.PlayerUseCase
 import universal.feature.basketball.model.Player
+import universal.feature.basketball.presentation.PlayerDetailFormat
+import universal.feature.basketball.presentation.PlayerDetailState
 import universal.feature.basketball.presentation.PlayerFormat
 import universal.feature.basketball.presentation.PlayerState
 import universal.feature.basketball.scene.PlayerDetailViewModel.Content
@@ -16,7 +18,7 @@ import universal.library.result.model.PageResult
 internal class PlayerDetailViewModel(
     private val fetchPlayer: PlayerUseCase.Fetch,
     private val navigation: BasketballNavigation,
-    private val playerFormat: PlayerFormat,
+    private val playerFormat: PlayerDetailFormat,
 ) : StatefulLceViewModel<Content>() {
 
     init {
@@ -40,6 +42,6 @@ internal class PlayerDetailViewModel(
     }
 
     data class Content(
-        val player: PlayerState,
+        val player: PlayerDetailState,
     ) : ViewModelContent
 }
