@@ -18,9 +18,9 @@ import universal.design.compose.asset.spec
 @Composable
 public fun Spinner(modifier: Modifier = Modifier, size: Dp = 100.dp) {
     val composition by rememberLottieComposition(AnimationId.Spinner.spec())
-        LottieAnimation(
-            composition = composition,
-            iterations = LottieConstants.IterateForever,
-            modifier = modifier.size(size),
-        )
+    LottieAnimation(
+        composition = composition,
+        iterations = LottieConstants.IterateForever,
+        modifier = modifier.size(size),
+    )
 }

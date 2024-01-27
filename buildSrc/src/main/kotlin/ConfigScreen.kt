@@ -6,6 +6,7 @@ import org.gradle.kotlin.dsl.project
 class ConfigScreen : Plugin<Project> by local plugin {
     dependencies {
         "implementation"(project(":library:architecture"))
+        "implementation"(project(":library:localisation"))
         "implementation"(project(":library:mvvm"))
         "implementation"(project(":library:navigation"))
         "implementation"(project(":library:result"))

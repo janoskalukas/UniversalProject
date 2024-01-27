@@ -1,11 +1,9 @@
 package universal.feature.basketball.scene
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -16,16 +14,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import org.koin.androidx.compose.koinViewModel
 import universal.design.compose.component.AuxButton
+import universal.design.compose.component.FullScreenError
 import universal.design.compose.component.FullScreenSpinner
 import universal.design.compose.component.ItemPlayer
 import universal.design.compose.component.Spinner
 import universal.feature.basketball.presentation.PlayerState
+import universal.library.localisation.infrastructure.string
 
 @Composable
 internal fun PlayersListScreen(viewModel: PlayersListViewModel = koinViewModel()) {
@@ -105,26 +106,8 @@ private fun ErrorContent(refresh: () -> Unit, modifier: Modifier = Modifier) {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = "Something went wrong")
+        Text(text = stringResource(string.something_went_wrong))
         Spacer(modifier = Modifier.size(16.dp))
         AuxButton(onClick = refresh)
-    }
-}
-
-@Composable
-fun FullScreenError(refresh: () -> Unit) {
-    Scaffold(
-        bottomBar = { AuxButton(onClick = refresh, modifier = Modifier.padding(vertical = 16.dp, horizontal = 8.dp)) },
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Text(text = "Something went wrong")
-            Spacer(modifier = Modifier.size(16.dp))
-        }
     }
 }

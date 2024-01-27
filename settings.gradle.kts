@@ -21,6 +21,7 @@ include(":feature:basketball")
 include(":networking:bff.base")
 
 include(":library:architecture")
+include(":library:localisation")
 include(":library:mvvm")
 include(":library:navigation")
 include(":library:result")

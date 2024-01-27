@@ -11,6 +11,8 @@ apply<ConfigCompiler>()
 apply<ConfigAndroidBuild>()
 
 dependencies {
+    implementation(project(":library:localisation"))
+
     implementation(libs.material3.compose)
     implementation(libs.material)
     implementation(libs.ui)
