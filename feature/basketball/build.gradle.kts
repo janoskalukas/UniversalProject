@@ -16,4 +16,7 @@ dependencies {
 
     implementation(libs.compose.paging.runtime)
     implementation(libs.compose.paging)
+    implementation(libs.glide)
+    implementation(libs.androidx.ui.tooling)
+    implementation(libs.compose.ui.preview)
 }

@@ -17,7 +17,7 @@ class ConfigScreen : Plugin<Project> by local plugin {
         "implementation"(platform(libs.dependency("compose.bom")))
         "implementation"(libs.dependency("ui"))
         "implementation"(libs.dependency("ui.graphics"))
-        "implementation"(libs.dependency("ui.tooling.preview"))
+        "implementation"(libs.dependency("androidx.ui.tooling"))
         "implementation"(libs.dependency("material"))
         "implementation"(libs.dependency("material3"))
         "implementation"(libs.dependency("androidx-navigation-compose"))

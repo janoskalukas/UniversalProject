@@ -1,11 +1,12 @@
 package universal.feature.basketball.scene
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import universal.feature.basketball.domain.BasketballNavigation
 import universal.feature.basketball.domain.PlayerUseCase
 import universal.feature.basketball.model.Player
+import universal.feature.basketball.presentation.PlayerFormat
+import universal.feature.basketball.presentation.PlayerState
 import universal.feature.basketball.scene.PlayerDetailViewModel.Content
 import universal.library.mvvm.presentation.Lce
 import universal.library.mvvm.presentation.StatefulLceViewModel
@@ -15,6 +16,7 @@ import universal.library.result.model.PageResult
 internal class PlayerDetailViewModel(
     private val fetchPlayer: PlayerUseCase.Fetch,
     private val navigation: BasketballNavigation,
+    private val playerFormat: PlayerFormat,
 ) : StatefulLceViewModel<Content>() {
 
     init {
@@ -27,18 +29,17 @@ internal class PlayerDetailViewModel(
 
     private fun fetch() = viewModelScope.launch {
         state = Lce.Loading()
-        delay(2000)
         when (val result = fetchPlayer()) {
-            is PageResult.Success -> content = result.value.toContent()
+            is PageResult.Success -> content = result.value.let(::toContent)
             is PageResult.Failure -> state = Lce.Error
         }
     }
 
-    private fun Player.toContent(): Content {
-        return Content(name = firstName)
+    private fun toContent(player: Player): Content {
+        return Content(player = player.let(playerFormat::format))
     }
 
     data class Content(
-        val name: String = "",
+        val player: PlayerState,
     ) : ViewModelContent
 }

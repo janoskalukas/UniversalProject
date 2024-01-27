@@ -5,7 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.MaterialTheme
 import org.koin.android.ext.android.inject
-import universal.app.theme.UniversalTheme
+import universal.design.compose.theme.UniversalTheme
 import universal.feature.basketball.routing.BasketballNavGraph
 import universal.library.navigation.system.NavControllerActivity
 import universal.library.navigation.system.NavigationActivityDelegate

@@ -17,6 +17,7 @@ koin = "3.5.3"
 kotlin-gradlePlugin = "1.9.22"
 android-gradlePlugin = "8.2.2"
 detekt = "1.23.3"
+uiTooling = "1.6.0"
 
 [plugins]
 dependencyGraphGenerator = "com.vanniktech.dependency.graph.generator:0.8.0"
@@ -50,7 +51,6 @@ androidx-navigation-runtime = { module = "androidx.navigation:navigation-runtime
 androidx-navigation-safeArgs = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "androidx-navigation" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 
-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 
@@ -73,9 +73,12 @@ moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.re
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+
 
 [bundles]
-compose = ["activity-compose", "compose-bom", "ui", "ui-graphics", "ui-tooling", "ui-tooling-preview", "material3", "material"]
+compose = ["activity-compose", "compose-bom", "ui", "ui-graphics", "material3", "material"]
 composeRuntime = ["activity-compose", "compose-bom", "ui", "ui-graphics", ]
 navigation = ["androidx-navigation-compose", "androidx-navigation-runtime"]
 lifecycle = ["androidx-lifecycle-viewmodel-ktx", "lifecycle-runtime-ktx"]

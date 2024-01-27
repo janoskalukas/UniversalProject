@@ -37,7 +37,7 @@ public sealed class Lce<out Content : ViewModelContent> : ViewModelState {
     public data class Content<out Content : ViewModelContent>(val content: Content) : Lce<Content>()
 
     /**
-     * Contains a reason of failure.
+     * Error is ready to be shown. It should contains a reason of failure but we are not going to do it now, for simplification.
      */
     public data object Error : Lce<Nothing>()
 }

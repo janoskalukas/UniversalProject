@@ -1,4 +1,4 @@
-package universal.app.theme
+package universal.design.compose.theme
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

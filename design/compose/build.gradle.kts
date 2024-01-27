@@ -16,6 +16,8 @@ dependencies {
     implementation(libs.material3.compose)
     implementation(libs.material)
     implementation(libs.ui)
+    implementation(libs.androidx.ui.tooling)
+    implementation(libs.compose.ui.preview)
     implementation(libs.glide)
     implementation(libs.compose.lottie)
 }
