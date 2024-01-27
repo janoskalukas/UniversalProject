@@ -23,7 +23,7 @@ import org.koin.androidx.compose.koinViewModel
 import universal.design.compose.component.AuxButton
 import universal.design.compose.component.FullScreenError
 import universal.design.compose.component.FullScreenSpinner
-import universal.design.compose.component.ItemPlayer
+import universal.design.compose.component.ItemHorizontal
 import universal.design.compose.component.Spinner
 import universal.feature.basketball.presentation.PlayerState
 import universal.library.localisation.infrastructure.string
@@ -68,10 +68,10 @@ private fun Content(
 
             items(pagingItems.itemCount) { index ->
                 pagingItems[index]?.let { pagingItem ->
-                    ItemPlayer(
-                        name = pagingItem.fullName,
-                        team = pagingItem.team,
-                        position = pagingItem.position,
+                    ItemHorizontal(
+                        title = pagingItem.fullName,
+                        label = pagingItem.team,
+                        description = pagingItem.position,
                         imageUrl = pagingItem.imageUrl,
                     ) {
                         onPlayer(pagingItem)

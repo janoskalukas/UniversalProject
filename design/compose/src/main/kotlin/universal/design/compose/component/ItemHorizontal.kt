@@ -22,10 +22,10 @@ import com.bumptech.glide.integration.compose.GlideImage
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-public fun ItemPlayer(
-    name: String,
-    team: String,
-    position: String? = null,
+public fun ItemHorizontal(
+    title: String,
+    label: String,
+    description: String? = null,
     imageUrl: String,
     onClick: () -> Unit,
 ) {
@@ -48,7 +48,7 @@ public fun ItemPlayer(
             Column {
                 Spacer(modifier = Modifier.size(8.dp))
                 Text(
-                    text = name,
+                    text = title,
                     color = MaterialTheme.colorScheme.onBackground,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
@@ -60,7 +60,7 @@ public fun ItemPlayer(
 
                 Spacer(modifier = Modifier.size(4.dp))
                 Text(
-                    text = team,
+                    text = label,
                     modifier = Modifier
                         .padding(horizontal = 16.dp),
                     color = MaterialTheme.colorScheme.onSurface,
@@ -69,7 +69,7 @@ public fun ItemPlayer(
                 )
 
                 Spacer(modifier = Modifier.size(4.dp))
-                position?.let {
+                description?.let {
                     Text(
                         text = it,
                         modifier = Modifier
