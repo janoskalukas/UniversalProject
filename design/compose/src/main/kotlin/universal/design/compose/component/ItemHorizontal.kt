@@ -11,14 +11,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import universal.design.compose.theme.PreviewTheme
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -44,42 +44,21 @@ public fun ItemHorizontal(
                 contentDescription = null,
                 modifier = Modifier.size(120.dp),
             )
-
-            Column {
+            Column(modifier = Modifier.fillMaxWidth()) {
                 Spacer(modifier = Modifier.size(8.dp))
-                Text(
-                    text = title,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    style = MaterialTheme.typography.titleMedium,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                )
-
+                TextTitleSmall(text = title)
                 Spacer(modifier = Modifier.size(4.dp))
-                Text(
-                    text = label,
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp),
-                    color = MaterialTheme.colorScheme.onSurface,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                )
-
+                TextBodySmall(text = label)
                 Spacer(modifier = Modifier.size(4.dp))
-                description?.let {
-                    Text(
-                        text = it,
-                        modifier = Modifier
-                            .padding(horizontal = 16.dp),
-                        color = MaterialTheme.colorScheme.onSurface,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                }
+                description?.let { TextBodySmall(text = it) }
+                Spacer(modifier = Modifier.size(4.dp))
             }
         }
     }
+}
+
+@Preview(locale = "en", name = "Day Mode")
+@Composable
+private fun ScreenPreviewLight() = PreviewTheme {
+    ItemHorizontal(title = "Title", label = "Label", description = "description", imageUrl = "", onClick = { })
 }

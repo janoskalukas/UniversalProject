@@ -25,6 +25,7 @@ include(":library:localisation")
 include(":library:mvvm")
 include(":library:navigation")
 include(":library:result")
+include(":library:paging")
 
 include(":design:compose")
 

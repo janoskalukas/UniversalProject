@@ -7,11 +7,11 @@ internal class BasketballNavigationImpl(
     private val dispatcher: NavigationDispatcher,
 ) : BasketballNavigation {
 
-    override fun goBack() {
-        dispatcher.goBack()
-    }
-
     override fun goToPlayerDetail() {
         dispatcher.goTo("player_detail")
+    }
+
+    override fun goToTeamDetail() {
+        dispatcher.goTo("team_detail")
     }
 }

@@ -13,6 +13,7 @@ apply<ConfigScreen>()
 
 dependencies {
     implementation(project(":networking"))
+    implementation(project(":library:paging"))
 
     implementation(libs.compose.paging.runtime)
     implementation(libs.compose.paging)

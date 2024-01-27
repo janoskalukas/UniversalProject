@@ -9,9 +9,17 @@ internal class PlayersRemoteResource(
     private val api: BasketballApi,
 ) {
 
-    suspend fun fetchPlayer(playerId: Int): PageResult<Player> = PageResult.of {
+    suspend fun fetchPlayers(pageNumber: Int): PageResult<List<Player>> {
+        return PageResult.of {
+            api
+                .getPlayers(pageNumber = pageNumber, perPage = 35)
+                .players.map(PlayerConverter::toDomain)
+        }
+    }
+
+    suspend fun fetchPlayer(id: Int): PageResult<Player> = PageResult.of {
         api
-            .getPlayer(playerId = playerId)
+            .getPlayer(id = id)
             .let(PlayerConverter::toDomain)
     }
 }

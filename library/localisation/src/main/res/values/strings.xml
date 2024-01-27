@@ -1,4 +1,26 @@
 <resources>
     <string name="app_name">Universal</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="height">Height: %s′ %s′′</string>
+    <string name="weight">Weight: %s lbs</string>
+    <string name="team">Team: %s</string>
+    <string name="name">%s %s</string>
+    <string name="load_more">Load more</string>
+    <string name="retry">Retry</string>
+
+    <string name="conference">Conference: %s</string>
+    <string name="division">Division: %s</string>
+    <string name="city">City: %s</string>
+    <string name="abbreviation">Abbreviation: %s</string>
+
+    <string name="point_guard">Position: Point Guard</string>
+    <string name="shooting_guard">Position: Shooting Guard</string>
+    <string name="small_forward">Position: Small Forward</string>
+    <string name="power_forward">Position: Power Forward</string>
+    <string name="center">Position: Center</string>
+    <string name="combo_guard">Position: Combo Guard</string>
+    <string name="forward_center">Position: Forward Center</string>
+    <string name="guarding_forward">Position: Guarding Forward</string>
+    <string name="forward">Position: Forward</string>
+    <string name="guard">Position: Guard</string>
 </resources>

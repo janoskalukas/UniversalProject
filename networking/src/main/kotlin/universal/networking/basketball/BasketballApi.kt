@@ -22,5 +22,5 @@ interface BasketballApi {
     ): ApiPlayers
 
     @GET("players/{ID}")
-    suspend fun getPlayer(@Path("ID") playerId: Int): ApiPlayer
+    suspend fun getPlayer(@Path("ID") id: Int): ApiPlayer
 }

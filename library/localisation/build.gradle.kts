@@ -12,4 +12,6 @@ apply<ConfigAndroidBuild>()
 
 dependencies {
     implementation(libs.activity.compose)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 }

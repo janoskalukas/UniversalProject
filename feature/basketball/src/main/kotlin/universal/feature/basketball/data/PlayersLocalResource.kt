@@ -7,6 +7,5 @@ internal class PlayersLocalResource {
     internal fun storePlayerId(id: Int) {
         currentPlayerId = id
     }
-
-    internal fun loadPlayerId() = checkNotNull(currentPlayerId) { "Player has not been set yet" }
+    internal fun loadPlayerId() = checkNotNull(currentPlayerId) { "Player id has not been set yet" }
 }

@@ -57,6 +57,7 @@ dependencies {
     implementation(project(":networking"))
     // library
     implementation(project(":library:navigation"))
+    implementation(project(":library:localisation"))
     // others
     implementation(project(":design:compose"))
 

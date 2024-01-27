@@ -4,45 +4,31 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.map
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.launch
-import universal.feature.basketball.domain.BasketballNavigation
+import kotlinx.coroutines.flow.Flow
 import universal.feature.basketball.domain.PlayerUseCase
 import universal.feature.basketball.domain.PlayersUseCase
-import universal.feature.basketball.presentation.PlayerFormat
-import universal.feature.basketball.presentation.PlayerState
+import universal.feature.basketball.presentation.PlayerListItemFormat
+import universal.feature.basketball.presentation.PlayerListItemState
+import universal.library.paging.model.PagingResult
+import universal.library.paging.system.createPager
+import universal.library.result.model.PageResult
 
 internal class PlayersListViewModel(
     private val fetchPlayers: PlayersUseCase.Fetch,
     private val displayPlayer: PlayerUseCase.Display,
-    private val navigation: BasketballNavigation,
-    private val playerFormat: PlayerFormat,
+    private val playerListItemFormat: PlayerListItemFormat,
 ) : ViewModel() {
 
-    private val _playersState: MutableStateFlow<PagingData<PlayerState>> = MutableStateFlow(value = PagingData.empty())
-    val playersState: StateFlow<PagingData<PlayerState>> get() = _playersState
+    val playersState: Flow<PagingData<PlayerListItemState>> = createPager(block = { onLoadPlayers(it) })
+        .flow
+        .cachedIn(viewModelScope)
 
-    init {
-        fetch()
+    private suspend fun onLoadPlayers(pageNumber: Int): PagingResult<PlayerListItemState> {
+        return when (val result = fetchPlayers(pageNumber)) {
+            is PageResult.Success -> PagingResult.Success(result.value.map(playerListItemFormat::format))
+            is PageResult.Failure -> PagingResult.Failure
+        }
     }
 
-    fun onBack() {
-        navigation.goBack()
-    }
-
-    fun onPlayer(player: PlayerState) {
-        displayPlayer(player.id)
-    }
-
-    private fun fetch() = viewModelScope.launch {
-        fetchPlayers()
-            .distinctUntilChanged()
-            .cachedIn(viewModelScope)
-            .collect {
-                _playersState.value = it.map(playerFormat::format)
-            }
-    }
+    fun onPlayer(player: PlayerListItemState) = displayPlayer(player.id)
 }

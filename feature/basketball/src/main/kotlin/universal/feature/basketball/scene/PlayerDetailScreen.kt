@@ -2,29 +2,39 @@ package universal.feature.basketball.scene
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetValue
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
+import universal.design.compose.component.ButtonOutlined
 import universal.design.compose.component.FullScreenError
 import universal.design.compose.component.FullScreenSpinner
+import universal.design.compose.component.TextBodyMedium
+import universal.design.compose.component.TextTitleLarge
 import universal.design.compose.theme.PreviewTheme
-import universal.feature.basketball.presentation.PlayerDetailState
 import universal.feature.basketball.presentation.PlayerState
+import universal.feature.basketball.presentation.TeamState
 import universal.feature.basketball.scene.PlayerDetailViewModel.Content
 import universal.library.mvvm.presentation.Lce
 
@@ -32,86 +42,75 @@ import universal.library.mvvm.presentation.Lce
 internal fun PlayerDetailScreen(viewModel: PlayerDetailViewModel = koinViewModel()) {
     Screen(
         state = viewModel.states.collectAsState().value,
-        onBack = viewModel::onBack,
         onRetry = viewModel::onRetry,
     )
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun Screen(
     state: Lce<Content>,
-    onBack: () -> Unit,
     onRetry: () -> Unit,
 ) {
-    BackHandler(onBack = onBack)
-    when (state) {
-        is Lce.Loading -> FullScreenSpinner()
-        is Lce.Error -> FullScreenError(refresh = onRetry)
-        is Lce.Content -> Content(content = state.content)
+    val coroutineScope = rememberCoroutineScope()
+    val sheetState = rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },
+        skipHalfExpanded = false,
+    )
+
+    BackHandler(sheetState.isVisible) { coroutineScope.launch { sheetState.hide() } }
+    ModalBottomSheetLayout(
+        sheetState = sheetState,
+        sheetShape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp),
+        sheetContent = { BottomSheet(state = state) },
+    ) {
+        when (state) {
+            is Lce.Loading -> FullScreenSpinner()
+            is Lce.Error -> FullScreenError(refresh = onRetry)
+            is Lce.Content -> Content(content = state.content, onTeam = { coroutineScope.launch { sheetState.show() } })
+        }
     }
 }
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-private fun Content(content: Content) {
-    Column {
+private fun Content(
+    content: Content,
+    onTeam: (Int) -> Unit,
+) {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         content.player.apply {
-            GlideImage(
-                model = imageUrl,
-                contentDescription = null,
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier.height(250.dp),
-            )
-            Column {
-                Spacer(modifier = Modifier.size(24.dp))
-                Text(
-                    text = fullName,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    style = MaterialTheme.typography.titleLarge,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+            Box {
+                GlideImage(
+                    model = imageUrl,
+                    contentDescription = null,
+                    contentScale = ContentScale.FillWidth,
+                    modifier = Modifier.height(200.dp),
                 )
-
-                Spacer(modifier = Modifier.size(4.dp))
-                Text(
+                ButtonOutlined(
                     text = team,
                     modifier = Modifier
-                        .padding(horizontal = 16.dp),
-                    color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.titleMedium,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
+                        .padding(end = 8.dp, bottom = 4.dp)
+                        .align(Alignment.BottomEnd),
+                    onClick = { onTeam(id) },
                 )
-
+            }
+            Column {
+                Spacer(modifier = Modifier.size(24.dp))
+                TextTitleLarge(text = fullName)
                 position?.let {
-                    Spacer(modifier = Modifier.size(4.dp))
-                    Text(
-                        text = it,
-                        modifier = Modifier
-                            .padding(horizontal = 16.dp),
-                        color = MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.bodyLarge,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                    )
+                    Spacer(modifier = Modifier.size(8.dp))
+                    TextBodyMedium(text = it)
                 }
-
                 height?.let {
-                    Spacer(modifier = Modifier.size(4.dp))
-                    Text(
-                        text = it,
-                        modifier = Modifier
-                            .padding(horizontal = 16.dp),
-                        color = MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.bodyLarge,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                    )
+                    Spacer(modifier = Modifier.size(8.dp))
+                    TextBodyMedium(text = it)
                 }
-
+                weight?.let {
+                    Spacer(modifier = Modifier.size(8.dp))
+                    TextBodyMedium(text = it)
+                }
                 Spacer(modifier = Modifier.size(16.dp))
             }
         }
@@ -124,17 +123,19 @@ private fun ScreenPreviewDark() = PreviewTheme {
     Screen(
         state = Lce.Content(
             Content(
-                PlayerDetailState(
+                player = PlayerState(
                     id = 0,
                     fullName = "Howard Wright",
                     team = "Atlanta Hawks",
+                    teamId = 10,
                     position = "Center",
                     imageUrl = "",
-                    height = "10′ 6″"
+                    height = "10′ 6″",
+                    weight = "100 pounds",
                 ),
+                team = TeamState(fullName = "LA Clippers", conference = "", division = "", city = "", abbreviation = ""),
             ),
         ),
-        onBack = { },
         onRetry = {},
     )
 }
@@ -145,17 +146,19 @@ private fun ScreenPreviewLight() = PreviewTheme {
     Screen(
         state = Lce.Content(
             Content(
-                PlayerDetailState(
+                PlayerState(
                     id = 0,
                     fullName = "Howard Wright",
                     team = "Atlanta Hawks",
+                    teamId = 10,
                     position = "Center",
                     imageUrl = "",
-                    height = "10′ 6″"
+                    height = "10′ 6″",
+                    weight = "100 pounds",
                 ),
+                team = TeamState(fullName = "LA Clippers", conference = "", division = "", city = "", abbreviation = ""),
             ),
         ),
-        onBack = { },
         onRetry = {},
     )
 }

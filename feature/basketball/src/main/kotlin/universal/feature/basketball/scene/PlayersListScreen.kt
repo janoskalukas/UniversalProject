@@ -1,6 +1,5 @@
 package universal.feature.basketball.scene
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -10,45 +9,37 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import org.koin.androidx.compose.koinViewModel
-import universal.design.compose.component.AuxButton
+import universal.design.compose.component.Button
 import universal.design.compose.component.FullScreenError
 import universal.design.compose.component.FullScreenSpinner
 import universal.design.compose.component.ItemHorizontal
 import universal.design.compose.component.Spinner
-import universal.design.compose.theme.PreviewTheme
-import universal.feature.basketball.presentation.PlayerState
+import universal.design.compose.component.TextTitleMedium
+import universal.feature.basketball.presentation.PlayerListItemState
 import universal.library.localisation.infrastructure.string
 
 @Composable
 internal fun PlayersListScreen(viewModel: PlayersListViewModel = koinViewModel()) {
-    val players: LazyPagingItems<PlayerState> = viewModel.playersState.collectAsLazyPagingItems()
     Screen(
-        state = players,
-        onBack = viewModel::onBack,
+        state = viewModel.playersState.collectAsLazyPagingItems(),
         onPlayer = viewModel::onPlayer,
     )
 }
 
 @Composable
 private fun Screen(
-    state: LazyPagingItems<PlayerState>,
-    onBack: () -> Unit,
-    onPlayer: (PlayerState) -> Unit,
+    state: LazyPagingItems<PlayerListItemState>,
+    onPlayer: (PlayerListItemState) -> Unit,
 ) {
-    BackHandler(enabled = true, onBack = onBack)
     Scaffold(
         backgroundColor = MaterialTheme.colorScheme.background,
     ) { paddingValues ->
@@ -62,9 +53,9 @@ private fun Screen(
 
 @Composable
 private fun Content(
-    pagingItems: LazyPagingItems<PlayerState>,
+    pagingItems: LazyPagingItems<PlayerListItemState>,
     innerPadding: PaddingValues,
-    onPlayer: (PlayerState) -> Unit,
+    onPlayer: (PlayerListItemState) -> Unit,
 ) {
     Column {
         LazyColumn(modifier = Modifier.padding(innerPadding)) {
@@ -94,7 +85,7 @@ private fun Content(
 }
 
 @Composable
-private fun Refresh(pagingItems: LazyPagingItems<PlayerState>) {
+private fun Refresh(pagingItems: LazyPagingItems<PlayerListItemState>) {
     when (pagingItems.loadState.refresh) {
         is LoadState.Loading -> FullScreenSpinner()
         is LoadState.Error -> FullScreenError(refresh = { pagingItems.retry() })
@@ -110,8 +101,8 @@ private fun ErrorContent(refresh: () -> Unit, modifier: Modifier = Modifier) {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = stringResource(string.something_went_wrong))
+        TextTitleMedium(stringResource(string.something_went_wrong))
         Spacer(modifier = Modifier.size(16.dp))
-        AuxButton(onClick = refresh)
+        Button(text = stringResource(string.load_more), onClick = refresh)
     }
 }
