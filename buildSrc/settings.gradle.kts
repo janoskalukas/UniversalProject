@@ -1,4 +1,4 @@
-rootProject.name = "ndb-mobile-app-android-build-src"
+rootProject.name = "universal-build-src"
 
 dependencyResolutionManagement {
     versionCatalogs {

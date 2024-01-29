@@ -67,10 +67,6 @@ comments:
     searchInInnerClass: true
     searchInInnerObject: true
     searchInInnerInterface: true
-    excludes:
-      - '**/kb/design/compose/component/**.kt'
-      - '**/kb/design/compose/layout/**.kt'
-      - '**/kb/ndb/network/**/data/event/**.kt'
   UndocumentedPublicFunction:
     active: false
   UndocumentedPublicProperty:
@@ -691,16 +687,6 @@ style:
     active: false
     comments: [ 'TODO:', 'FIXME:', 'STOPSHIP:' ]
     allowedPatterns: ''
-  ForbiddenImport:
-    active: true
-    imports:
-      - value: java.math.BigDecimal
-        reason: "Use Amount/Percentage/Decimal instead"
-      - value: kotlinx.coroutines.test.runTest
-        reason: "Use coTest() instead."
-    forbiddenPatterns: ''
-    excludes:
-      - '**/CoTest.kt'
   ForbiddenMethodCall:
     active: true
     methods: [

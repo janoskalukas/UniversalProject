@@ -33,7 +33,7 @@ public sealed class DialogResult<out T> {
     /**
      * Failure with given [DialogError].
      */
-    public data class Failure(val error: DialogError) : DialogResult<Nothing>()
+    public data object Failure : DialogResult<Nothing>()
 
     public companion object
 }
@@ -51,7 +51,7 @@ public sealed class SectionResult<out T> {
     /**
      * Failure with given [SectionError].
      */
-    public data class Failure(val error: SectionError) : SectionResult<Nothing>()
+    public data object Failure : SectionResult<Nothing>()
 
     public companion object
 }
@@ -69,7 +69,7 @@ public sealed class FieldResult<out T> {
     /**
      * Failure with given [FieldError].
      */
-    public data class Failure(val errors: List<FieldError>) : FieldResult<Nothing>()
+    public data object Failure : FieldResult<Nothing>()
 
     public companion object
 }

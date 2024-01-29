@@ -14,7 +14,7 @@ internal object PlayerConverter {
             heightFeet = heightFeet,
             heightInches = heightInches,
             weightPounds = weightPounds,
-            imageUrl = "https://picsum.photos/512?random=$id",
+            imageUrl = "https://picsum.photos/300?random=$id",
             team = team.let(TeamConverter::toDomain),
         )
     }

@@ -3,7 +3,6 @@ package universal.feature.basketball.routing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -12,7 +11,7 @@ import universal.feature.basketball.scene.PlayerDetailScreen
 import universal.feature.basketball.scene.PlayersListScreen
 
 @Composable
-public fun BasketballNavGraph(navController: NavHostController, paddingValues: PaddingValues) {
+public fun BasketballNavGraph(navController: NavHostController) {
 
     NavHost(
         navController = navController,

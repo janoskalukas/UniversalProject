@@ -2,8 +2,15 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.project
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 class ConfigScreen : Plugin<Project> by local plugin {
+    tasks.withType<KotlinJvmCompile> {
+        compilerOptions {
+            freeCompilerArgs.add("-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi")
+        }
+    }
     dependencies {
         "implementation"(project(":library:architecture"))
         "implementation"(project(":library:localisation"))
@@ -25,5 +32,16 @@ class ConfigScreen : Plugin<Project> by local plugin {
         "implementation"(libs.dependency("koin.core"))
         "implementation"(libs.dependency("koin.android"))
         "implementation"(libs.dependency("koin.androidx.compose"))
+        "implementation"(libs.dependency("junit.params"))
+
+        "testImplementation"(libs.dependency("coroutines.test"))
+        "testImplementation"(libs.dependency("kotest.assertions"))
+        "testImplementation"(libs.dependency("junit.core"))
+        "testImplementation"(libs.dependency("mockk"))
+        "testImplementation"(libs.dependency("mockk.agent"))
+
+        "testImplementation"(testFixtures(project(":library:architecture")))
+        "testImplementation"(project(":library:mvvmfixtures"))
+        "testImplementation"(project(":library:localisationfixtures"))
     }
 }

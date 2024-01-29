@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+    implementation(libs.androidx.splash)
 
     //Test impl
     testImplementation("junit:junit:4.13.2")

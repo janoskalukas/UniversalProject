@@ -9,11 +9,12 @@ android {
 
 apply<ConfigCompiler>()
 apply<ConfigAndroidBuild>()
-apply<ConfigScreen>()
 
 dependencies {
     implementation(libs.retrofit)
     implementation(libs.moshi)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logginginterceptor)
+    implementation(libs.koin.core)
+    implementation(libs.activity.compose)
 }
