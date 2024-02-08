@@ -4,10 +4,12 @@ import com.squareup.moshi.Moshi
 import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import universal.networking.basketball.BasketballApi
+import universal.networking.basketball.data.BasketballServiceApi
 
 /**
  * Networking DI graph.
@@ -42,5 +44,7 @@ public object NetworkingGraph {
                 .addConverterFactory(MoshiConverterFactory.create(get()))
                 .build()
         }
+
+        factoryOf(::BasketballServiceApi)
     }
 }

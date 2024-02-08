@@ -6,10 +6,7 @@ import retrofit2.http.Query
 import universal.networking.basketball.dto.ApiPlayer
 import universal.networking.basketball.dto.ApiPlayers
 
-/**
- * Basketball api.
- */
-interface BasketballApi {
+internal interface BasketballApi {
 
     companion object {
         const val API_URL = "https://www.balldontlie.io/api/v1/"
