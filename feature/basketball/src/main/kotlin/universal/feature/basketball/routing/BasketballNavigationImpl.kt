@@ -10,8 +10,4 @@ internal class BasketballNavigationImpl(
     override fun goToPlayerDetail() {
         dispatcher.goTo("player_detail")
     }
-
-    override fun goToTeamDetail() {
-        dispatcher.goTo("team_detail")
-    }
 }
