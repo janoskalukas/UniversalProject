@@ -5,6 +5,10 @@ plugins {
 
 android {
     namespace = "com.universal.networking"
+
+    defaultConfig {
+        consumerProguardFiles("consumer-rules.pro")
+    }
 }
 
 apply<ConfigCompiler>()
