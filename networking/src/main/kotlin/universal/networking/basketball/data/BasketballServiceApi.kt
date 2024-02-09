@@ -7,7 +7,7 @@ import universal.networking.basketball.dto.ApiPlayers
 /**
  * Basketball service api.
  */
-class BasketballServiceApi internal constructor(
+public class BasketballServiceApi internal constructor(
     private val api: BasketballApi,
 ) {
 
