@@ -1,7 +1,7 @@
 package universal.feature.basketball.data
 
 import universal.feature.basketball.model.Player
-import universal.networking.basketball.dto.ApiPlayer
+import universal.networking.nba.dto.ApiPlayer
 
 internal object PlayerConverter {
 

@@ -1,24 +1,19 @@
-package universal.networking.basketball.di
+package universal.networking.nba.di
 
 import com.squareup.moshi.Moshi
 import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import universal.networking.basketball.BasketballApi
-import universal.networking.basketball.data.BasketballServiceApi
 
 /**
- * Networking DI graph.
+ * Networking base DI graph.
  */
-public object NetworkingGraph {
+public object NetworkingBaseGraph {
 
     public val module = module {
-
-        single<BasketballApi> { get<Retrofit>().create(BasketballApi::class.java) }
 
         single {
             Moshi.Builder()
@@ -39,12 +34,10 @@ public object NetworkingGraph {
 
         single {
             Retrofit.Builder()
-                .baseUrl(BasketballApi.API_URL)
+                .baseUrl("https://www.balldontlie.io/api/v1/")
                 .client(get())
                 .addConverterFactory(MoshiConverterFactory.create(get()))
                 .build()
         }
-
-        factoryOf(::BasketballServiceApi)
     }
 }

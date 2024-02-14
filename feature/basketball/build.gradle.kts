@@ -12,7 +12,7 @@ apply<ConfigCompiler>()
 apply<ConfigScreen>()
 
 dependencies {
-    implementation(project(":networking"))
+    implementation(project(":networking:nba"))
     implementation(project(":library:paging"))
 
     implementation(libs.compose.paging.runtime)

@@ -55,7 +55,8 @@ dependencies {
     implementation(project(":feature:basketball"))
     // generic
     // networking
-    implementation(project(":networking"))
+    implementation(project(":networking:nba"))
+    implementation(project(":networking:base"))
     // library
     implementation(project(":library:navigation"))
     implementation(project(":library:localisation"))

@@ -7,7 +7,8 @@ import org.koin.core.context.GlobalContext.startKoin
 import universal.feature.basketball.di.BasketballFeatureGraph
 import universal.library.localisation.di.LocalisationGraph
 import universal.library.navigation.di.NavigationLibraryGraph
-import universal.networking.basketball.di.NetworkingGraph
+import universal.networking.nba.di.NetworkingBaseGraph
+import universal.networking.nba.di.NetworkingNbaGraph
 
 internal class UniversalApp : Application() {
 
@@ -20,7 +21,8 @@ internal class UniversalApp : Application() {
                 listOf(
                     BasketballFeatureGraph.module,
                     NavigationLibraryGraph.module,
-                    NetworkingGraph.module,
+                    NetworkingBaseGraph.module,
+                    NetworkingNbaGraph.module,
                     LocalisationGraph.module,
                 ),
             )

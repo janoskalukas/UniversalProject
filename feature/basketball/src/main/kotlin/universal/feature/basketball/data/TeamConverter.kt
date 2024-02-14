@@ -1,7 +1,7 @@
 package universal.feature.basketball.data
 
 import universal.feature.basketball.model.Team
-import universal.networking.basketball.dto.ApiTeam
+import universal.networking.nba.dto.ApiTeam
 
 internal object TeamConverter {
 

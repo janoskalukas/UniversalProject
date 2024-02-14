@@ -1,16 +1,12 @@
-package universal.networking.basketball
+package universal.networking.nba
 
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import universal.networking.basketball.dto.ApiPlayer
-import universal.networking.basketball.dto.ApiPlayers
+import universal.networking.nba.dto.ApiPlayer
+import universal.networking.nba.dto.ApiPlayers
 
 internal interface BasketballApi {
-
-    companion object {
-        const val API_URL = "https://www.balldontlie.io/api/v1/"
-    }
 
     @GET("players")
     suspend fun getPlayers(

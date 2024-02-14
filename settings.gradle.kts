@@ -18,7 +18,8 @@ include(":app")
 
 include(":feature:basketball")
 
-include(":networking:bff.base")
+include(":networking:nba")
+include(":networking:base")
 
 include(":library:architecture")
 include(":library:localisation")

@@ -3,7 +3,7 @@ package universal.feature.basketball.data
 import universal.feature.basketball.model.Player
 import universal.library.result.data.of
 import universal.library.result.model.PageResult
-import universal.networking.basketball.data.BasketballServiceApi
+import universal.networking.nba.data.BasketballServiceApi
 
 internal class PlayersRemoteResource(
     private val api: BasketballServiceApi,

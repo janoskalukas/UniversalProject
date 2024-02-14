@@ -1,0 +1,1 @@
+-keep class universal.networking.nba.dto.** { *; }

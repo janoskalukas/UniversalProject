@@ -1,4 +1,4 @@
-package universal.networking.basketball.dto
+package universal.networking.nba.dto
 
 import com.squareup.moshi.Json
 

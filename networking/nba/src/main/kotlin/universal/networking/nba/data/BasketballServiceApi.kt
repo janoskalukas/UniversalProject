@@ -1,8 +1,8 @@
-package universal.networking.basketball.data
+package universal.networking.nba.data
 
-import universal.networking.basketball.BasketballApi
-import universal.networking.basketball.dto.ApiPlayer
-import universal.networking.basketball.dto.ApiPlayers
+import universal.networking.nba.BasketballApi
+import universal.networking.nba.dto.ApiPlayer
+import universal.networking.nba.dto.ApiPlayers
 
 /**
  * Basketball service api.
