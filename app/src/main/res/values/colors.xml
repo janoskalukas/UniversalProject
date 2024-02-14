@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Color variants of compose [KbTheme.colors], that are used in old android themes -->
     <color name="background">#FFF8F8F8</color>
     <color name="background_splash">#FFF8F8F8</color>
 </resources>

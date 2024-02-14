@@ -638,8 +638,6 @@ potential-bugs:
 
 CustomRules:
   excludes: *fileTemplates
-  CheckKbBackHandlerCall:
-    active: true
   CheckGoBackNavigationCall:
     active: true
   CheckFragmentDialogOnCancelImplementation:

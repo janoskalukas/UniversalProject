@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.universal.library.mvvmfixtures"
+    namespace = "com.universal.library.mvvm.fixtures"
 }
 
 apply<ModuleFixtures>()
