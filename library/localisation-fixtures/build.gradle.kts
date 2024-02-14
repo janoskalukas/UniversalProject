@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.universal.library.localisationfixtures"
+    namespace = "com.universal.library.localisation.fixtures"
 }
 
 apply<ModuleFixtures>()

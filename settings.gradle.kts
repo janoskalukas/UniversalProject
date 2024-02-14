@@ -22,7 +22,7 @@ include(":networking:bff.base")
 
 include(":library:architecture")
 include(":library:localisation")
-include(":library:localisationfixtures")
+include(":library:localisation-fixtures")
 include(":library:mvvm")
 include(":library:mvvmfixtures")
 include(":library:navigation")

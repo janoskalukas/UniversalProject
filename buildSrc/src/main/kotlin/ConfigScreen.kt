@@ -42,6 +42,6 @@ class ConfigScreen : Plugin<Project> by local plugin {
 
         "testImplementation"(testFixtures(project(":library:architecture")))
         "testImplementation"(project(":library:mvvmfixtures"))
-        "testImplementation"(project(":library:localisationfixtures"))
+        "testImplementation"(project(":library:localisation-fixtures"))
     }
 }
