@@ -6,7 +6,7 @@ import retrofit2.http.Query
 import universal.networking.nba.dto.ApiPlayer
 import universal.networking.nba.dto.ApiPlayers
 
-internal interface BasketballApi {
+internal interface NbaApi {
 
     @GET("players")
     suspend fun getPlayers(

@@ -1,14 +1,14 @@
 package universal.networking.nba.data
 
-import universal.networking.nba.BasketballApi
+import universal.networking.nba.NbaApi
 import universal.networking.nba.dto.ApiPlayer
 import universal.networking.nba.dto.ApiPlayers
 
 /**
  * Basketball service api.
  */
-public class BasketballServiceApi internal constructor(
-    private val api: BasketballApi,
+public class NbaServiceApi internal constructor(
+    private val api: NbaApi,
 ) {
 
     suspend fun getPlayers(pageNumber: Int, perPage: Int): ApiPlayers {
